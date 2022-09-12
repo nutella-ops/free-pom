@@ -1,0 +1,10 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 500;}
+
+.comments p:nth-child(even){
+    background: lavender;}
+
+.comments p:nth-child(odd){
+    background: gainsboro;}
