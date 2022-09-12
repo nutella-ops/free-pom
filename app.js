@@ -1,3 +1,9 @@
+var date = new Date();
+var dateArray = [date.getMonth(), date.getFullYear()];
+// var DD = Date().slice(8, 10);
+var MM = Date().slice(4, 7);
+var YY = Date().slice(11,15);
+
 function download(filename, text) {
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
@@ -10,18 +16,15 @@ function download(filename, text) {
 
 var makeJson = function () {
     "use strict";
-    var date = new Date();
     var entryArray = Array.from(document.getElementsByClassName("entry")).map(function (elem) {
         console.log(elem);
         return elem.innerText;
     })
-    download(date.getMonth() + date.getFullYear() + ".json", JSON.stringify(entryArray)); 
-    // date.getDate() + 
+    download(MM + YY +".json", JSON.stringify(entryArray)); 
+     
 }
 
-
-
-var main = function () { 
+var main = function () {
     "use strict";
 
     //tried to make an abstraction and got errors:
@@ -39,7 +42,8 @@ var main = function () {
         var $newComment = $("<p>")
         var $usrInput = $(".comment-input input").val();
         var $wipeInput = $(".comment-input input").val("");
-        var date = new Date();
+        // var date = new Date();
+        date
 
         if ($usrInput !== "") {
             $newComment.hide();
@@ -55,18 +59,11 @@ var main = function () {
         }
     };
 
-    $(".button").on("click", makeJson);
-
-
-    // keyTrigger(makeJson());
-
     $(".comment-input input").on("keydown", function (event) {
         if (event.keyCode == 13) {
             makeJson();
         };
     });
-
-    // keyTrigger(postComment());
 
     $(".comment-input input").on("keydown", function (event) {
         if (event.keyCode == 13) {
@@ -75,4 +72,4 @@ var main = function () {
     });
 };
 
-$(document).ready(main); 
+$(document).ready(main);
