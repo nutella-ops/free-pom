@@ -27,17 +27,6 @@ var makeJson = function () {
 var main = function () {
     "use strict";
 
-    //tried to make an abstraction and got errors:
-        // keyTrigger(); >> undefined
-        // keyTrigger(postComment()); >> Uncaught ReferenceError: postComment is not defined at <anonymous>:1:1
-    // var keyTrigger = function(arg) {
-    //     $(".comment-input input").on("keydown", function (event) {
-    //         if (event.keyCode == 13) {
-    //             arg;
-    //         };
-    //     });
-    // };
-
     var postComment = function() {
         var $newComment = $("<p>")
         var $usrInput = $(".comment-input input").val();
