@@ -31,8 +31,7 @@ var main = function () {
         var $newComment = $("<p>")
         var $usrInput = $(".comment-input input").val();
         var $wipeInput = $(".comment-input input").val("");
-        // var date = new Date();
-        date
+        var date = new Date();
 
         if ($usrInput !== "") {
             $newComment.hide();
