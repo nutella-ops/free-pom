@@ -1,3 +1,6 @@
+document.cookie = "name0=fuck,name1=you\
+expires=Thu, 17 Jul 2024 5:00:00 GMT";
+
 var date = new Date();
 var dateArray = [date.getMonth(), date.getFullYear()];
 // var DD = Date().slice(8, 10);
