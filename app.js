@@ -1,9 +1,8 @@
-document.cookie = "name0=fuck,name1=you\
-expires=Thu, 17 Jul 2024 5:00:00 GMT";
+Window.localStorage;
 
 var date = new Date();
 var dateArray = [date.getMonth(), date.getFullYear()];
-// var DD = Date().slice(8, 10);
+var DD = Date().slice(8, 10);
 var MM = Date().slice(4, 7);
 var YY = Date().slice(11,15);
 
@@ -23,8 +22,7 @@ var makeJson = function () {
         console.log(elem);
         return elem.innerText;
     })
-    download(MM + YY +".json", JSON.stringify(entryArray)); 
-     
+    download(DD + MM + YY +".json", JSON.stringify(entryArray)); 
 }
 
 var main = function () {
@@ -56,9 +54,14 @@ var main = function () {
         };
     });
 
+    $(".comment-input button").on("click", function (event) {
+        makeJson();
+    });
+
     $(".comment-input input").on("keydown", function (event) {
         if (event.keyCode == 13) {
             postComment();
+            document.cookie.append()
         };
     });
 };
