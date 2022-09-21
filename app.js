@@ -37,14 +37,14 @@ var main = function () {
         if ($usrInput !== "") {
             $newComment.hide();
             $newComment.addClass("entry")
-            $newComment.text($usrInput + ", " + date); 
+            $newComment.text($usrInput + ", " + date + "\n"); 
             $(".comments").append($newComment);
             $newComment.fadeIn();
             $wipeInput;
         }
 
         if ($usrInput == "") {
-            //do nothing
+            return null;
         }
     };
 
@@ -61,7 +61,11 @@ var main = function () {
     $(".comment-input input").on("keydown", function (event) {
         if (event.keyCode == 13) {
             postComment();
-            document.cookie.append()
+            var entryArray = Array.from(document.getElementsByClassName("comments")).map(function (elem) {
+                // console.log(elem);
+                return elem.innerText;
+                })
+            localStorage.setItem('json', entryArray);
         };
     });
 };
