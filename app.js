@@ -1,4 +1,5 @@
 Window.localStorage;
+var pastJson = localStorage.getItem('json');
 
 var date = new Date();
 var dateArray = [date.getMonth(), date.getFullYear()];
@@ -18,16 +19,23 @@ function download(filename, text) {
 
 var makeJson = function () {
     "use strict";
-    var entryArray = Array.from(document.getElementsByClassName("entry")).map(function (elem) {
+    download(DD + MM + YY +".json", JSON.stringify(entryArray())); 
+}
+
+var entryArray = function() {
+    return Array.from(document.getElementsByClassName("entry")).map(function (elem) {
         console.log(elem);
         return elem.innerText;
     })
-    download(DD + MM + YY +".json", JSON.stringify(entryArray)); 
+}
+
+var entryString = function() {
+    JSON.stringify(entryArray());
 }
 
 var main = function () {
     "use strict";
-
+    
     var postComment = function() {
         var $newComment = $("<p>")
         var $usrInput = $(".comment-input input").val();
@@ -48,12 +56,6 @@ var main = function () {
         }
     };
 
-    $(".comment-input input").on("keydown", function (event) {
-        if (event.keyCode == 13) {
-            makeJson();
-        };
-    });
-
     $(".comment-input button").on("click", function (event) {
         makeJson();
     });
@@ -61,11 +63,7 @@ var main = function () {
     $(".comment-input input").on("keydown", function (event) {
         if (event.keyCode == 13) {
             postComment();
-            var entryArray = Array.from(document.getElementsByClassName("comments")).map(function (elem) {
-                // console.log(elem);
-                return elem.innerText;
-                })
-            localStorage.setItem('json', entryArray);
+            localStorage.setItem('json', JSON.stringify(entryArray() + pastJson));  
         };
     });
 };
