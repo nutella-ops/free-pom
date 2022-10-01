@@ -1,5 +1,5 @@
 Window.localStorage;
-var pastJson = localStorage.getItem('json');
+var pastJson = JSON.parse(localStorage.getItem('json'));
 
 var date = new Date();
 var dateArray = [date.getMonth(), date.getFullYear()];
@@ -19,7 +19,8 @@ function download(filename, text) {
 
 var makeJson = function () {
     "use strict";
-    download(DD + MM + YY +".json", JSON.stringify(entryArray())); 
+    // var currentJson = pastJson + entryArray();
+    download(DD + MM + YY +".json", JSON.stringify(pastJson + entryArray()));
 }
 
 var entryArray = function() {
@@ -58,12 +59,16 @@ var main = function () {
 
     $(".comment-input button").on("click", function (event) {
         makeJson();
+        // localStorage.setItem('json', "");
+        pastJson = localStorage.clear();
+        
     });
 
     $(".comment-input input").on("keydown", function (event) {
         if (event.keyCode == 13) {
             postComment();
-            localStorage.setItem('json', JSON.stringify(entryArray() + pastJson));  
+            // var currentJson = pastJson + entryArray();
+            localStorage.setItem('json', JSON.stringify(pastJson + entryArray()));  
         };
     });
 };
