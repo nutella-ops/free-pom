@@ -61,6 +61,7 @@ var main = function () {
         makeJson();
         // localStorage.setItem('json', "");
         pastJson = localStorage.clear();
+        window.location.reload();
         
     });
 
